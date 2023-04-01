@@ -9,7 +9,6 @@ export default function NavBar() {
 return (
    <ContainerNavBar>
         <img src='https://e7.pngegg.com/pngimages/1016/542/png-clipart-black-house-house-computer-icons-home-automation-kits-real-estate-home-icon-angle-building.png' onClick = {()=>{navigate('/home')}}/>
-        <img src='' onClick = {()=>{navigate('')}}/>
         <img src='https://w7.pngwing.com/pngs/184/113/png-transparent-user-profile-computer-icons-profile-heroes-black-silhouette-thumbnail.png' onClick = {()=>{navigate('/profile')}}/>
         <img src="https://w7.pngwing.com/pngs/367/547/png-transparent-computer-icons-exit-angle-text-rectangle.png" onClick = {()=>{navigate('/login')}}/>
    </ContainerNavBar>

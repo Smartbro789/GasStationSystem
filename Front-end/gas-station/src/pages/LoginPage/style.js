@@ -23,9 +23,8 @@ export const ContainerLogin = styled.div`
         flex-direction: column;
         justify-content:center;
         align-items: center;
-        border: 3px solid black;
         img{
-            width:100%;
+            width:50%;
             height:100%;   
         }
     }

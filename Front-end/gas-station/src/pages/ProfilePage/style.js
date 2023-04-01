@@ -5,7 +5,6 @@ export const ContainerProfile = styled.div`
     height:80%;
     display: flex;
     justify-content: center;
-    background:red;
     flex-direction:column;
     align-items:center;
     section{
@@ -13,7 +12,6 @@ export const ContainerProfile = styled.div`
         height:100%;
         display: flex;
         flex-direction: column;
-        border: 2px solid black;
         div{
             margin-top:1rem;
             label{
