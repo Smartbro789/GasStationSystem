@@ -8,8 +8,8 @@ export const ContainerNavBar = styled.div`
     justify-content: space-evenly;
     align-items: center;
     img{
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         margin: 0 0.5rem;
     }
 `;

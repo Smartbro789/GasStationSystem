@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/NavBar/Navbar';
 import { ContainerBase, ContainerMobile } from '../../styleGlobal';
 import { CardService, ContainerHomePage, ContainerInfo, ContainerServices } from './style';
 
 export default function HomePage() {
+    const navigate = useNavigate()
  return (
     <ContainerBase>
         <ContainerMobile>
@@ -18,22 +20,18 @@ export default function HomePage() {
                     </div>
                     <div>
                         <label>Vencimento:</label>
-                        <span>13/05/2023</span>
+                        <span>20/03/2023</span>
                     </div>
                 </ContainerInfo>
                 <ContainerServices>
                     <CardService>
-                        <img src='https://img2.gratispng.com/20180404/ejq/kisspng-filling-station-gasoline-fuel-dispenser-logo-gas-pump-5ac579f93f81f0.9827820015228912572601.jpg'/>
+                        <img onClick={()=>{navigate('/abastecimentos')}} src='https://cdn-icons-png.flaticon.com/512/481/481233.png'/>
+                        <span>Abastecimentos</span>
                     </CardService>
                     <CardService>
-                        <img src='https://w7.pngwing.com/pngs/339/510/png-transparent-computer-icons-receipt-invoice-accounting-receipt-text-payment-streamline.png'/>
-                    </CardService>
-                    <CardService>
-                        <img src='https://img2.gratispng.com/20180402/kkq/kisspng-car-vehicle-fleet-management-computer-icons-road-traffic-5ac1b399a001f4.0923243115226438656554.jpg'/>
+                        <img onClick={()=>{navigate('/meusCarros')}} src='https://cdn-icons-png.flaticon.com/512/6668/6668689.png'/>
+                        <span>Veículos</span>
                         </CardService>
-                    <CardService>
-                        <img src='https://img2.gratispng.com/20180422/wre/kisspng-computer-icons-credit-card-icon-design-5adc1cc099cdb9.03676056152437472063.jpg'/>
-                    </CardService>
                 </ContainerServices>
             </ContainerHomePage>
             <NavBar/>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ContainerHomePage = styled.div`
     width:100%;
-    height:100%;
+    height:80%;
     display: flex;
     justify-content: center;
     background:#fff;
@@ -55,8 +55,8 @@ export const ContainerServices = styled.div`
 `
 
 export const CardService = styled.div`
-    width:100px;
-    height: 90px;
+    width:120px;
+    height: 120px;
     border: 2px solid #fff;
     border-radius: 10px;
     background: #fff;
@@ -64,8 +64,15 @@ export const CardService = styled.div`
     display: flex;
     justify-content:center;
     align-items:center;
+    background: #d1d0cd;
+    flex-direction: column;
     img{
-        width: 100%;
-        height: 80px;
+        width: 50%;
+        height: 50%;
+    }
+    span{
+        font-size: 1rem;
+        color: #111;
+        margin-top: 1rem;
     }
 `
