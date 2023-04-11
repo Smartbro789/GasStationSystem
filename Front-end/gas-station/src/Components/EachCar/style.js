@@ -17,4 +17,10 @@ export const ContainerEachCar = styled.div`
     span{
         margin: 1rem 1rem;
     }
+    button{
+        border: none;
+        font-size:1rem;
+        color:red;
+
+    }
 `;

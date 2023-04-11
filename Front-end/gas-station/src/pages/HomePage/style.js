@@ -20,6 +20,8 @@ export const ContainerInfo = styled.div`
     flex-direction: column;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+    background:#424242;
+    color: #fff;
     h3{
         margin: 1rem;
     }
@@ -50,6 +52,14 @@ export const ContainerServices = styled.div`
         background: black;
         position: relative;
         top:1rem;
+    }
+    
+    ::after{
+        content: '';
+        display: flex;
+        width: 90%;
+        height: 3px;
+        background: black;
     }
 
 `
