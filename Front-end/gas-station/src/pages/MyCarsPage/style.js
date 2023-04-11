@@ -35,6 +35,9 @@ export const ContainerMyCars = styled.div`
                 text-align: center;
                 font-size: 1rem;
                 color: #111;
+                border: none;
+                background: transparent;
+                border-bottom:1px solid #111;
                 ::placeholder{
                     color: #111;
                     text-align: center;
@@ -45,6 +48,11 @@ export const ContainerMyCars = styled.div`
                 width: 150px;
                 height: 30px;
                 margin: 0.5rem 0;
+                background:#50f72f;
+                border:none;
+                border-radius:10px;
+                color: #111;
+                font-size: 1rem;
             }
         }
 

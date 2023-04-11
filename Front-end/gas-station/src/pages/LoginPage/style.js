@@ -10,7 +10,6 @@ export const ContainerLogin = styled.div`
     div{
         width:100%;
         height:10%;
-        background:green;
         display: flex;
         justify-content:center;
         align-items: center;
@@ -34,10 +33,26 @@ export const ContainerLogin = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        input, button{
+        fieldset{
+            height:50px
+        }
+        input{
             width: 300px;
             height: 30px;
+            border:none;
+            outline: none;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+        button{
+            width: 330px;
+            height:30px;
             margin-top: 1rem;
+            border:none;
+            font-size: 1rem;
+            background:#424242;
+            color:#fff;
+            border-radius: 10px;
         }
     }
 `;

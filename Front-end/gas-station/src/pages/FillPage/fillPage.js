@@ -1,12 +1,32 @@
 import React, { useContext } from 'react';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/NavBar/Navbar';
-import { GlobalStateContext } from '../../GlobalState/globalStateContext';
 import { ContainerBase, ContainerMobile } from '../../styleGlobal';
 import { ContainerFill } from './style';
+import useRequestData from '../../Hooks/useRequestData';
+import { useNavigate } from 'react-router-dom';
+import { useProtectPage } from '../../Hooks/useProtectPage';
 
 export default function FillPage() {
-    const context = useContext(GlobalStateContext)
+    const navigate = useNavigate()
+    useProtectPage()
+
+    const infoPurchase = (idPurchase)=>{
+        localStorage.setItem('idPurchase', idPurchase)
+        navigate('/infoCompra')
+    }
+
+    const [data] = useRequestData(`http://localhost:3003/purchases/purchase/${localStorage.getItem('idClient')}`)
+    const renderFills = data.map((fill, key)=>{
+        return(
+            <tr onClick={()=>{infoPurchase(fill.idPurchase)}} key={key}>
+                <td>{fill.plate}</td>
+                <td>{fill.name_product}</td>
+                <td>R$ {fill.value.toFixed(2)}</td>
+                <td>{fill.litros.toFixed(2)} Lt</td>
+            </tr>
+        )
+    })
  return (
     <ContainerBase>
         <ContainerMobile>
@@ -16,18 +36,17 @@ export default function FillPage() {
                     <h2>Abastecimentos</h2>
                 </header>
                 <main>
-                    {
-                        context.fills.map((fill, key)=>{
-                            return(
-                                <div key={key}>
-                                    <span>{fill.plate}</span>
-                                    <span>{fill.product}</span>
-                                    <span>{fill.quantity.toFixed(2)}Lts</span>
-                                    <span>R$ {fill.value.toFixed(2)}</span>
-                                </div>
-                            )
-                        })
-                    }
+                   <table border={0}>
+                        <tbody>
+                            <tr>
+                                <th>Placa</th>
+                                <th>Produto</th>
+                                <th>Valor</th>
+                                <th>Litros</th>
+                            </tr>
+                            {renderFills}
+                        </tbody>
+                   </table>
                 </main>
             </ContainerFill>
             <NavBar/>

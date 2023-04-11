@@ -27,13 +27,9 @@ export const ContainerFill = styled.div`
             height: 2px;
             background: black;
         }
-        div{
-            display: flex;
-            justify-content: space-between;
-            margin: 0.5rem 0;
-            span{
-                margin: 0 1rem;
-            }
+        table{
+            width: 100%;
+            text-align: center;
         }
     }
 `;
