@@ -1,12 +1,17 @@
 export interface PurchaseDTO{
-    quantity:number,
+    value:number,
+    carId:string,
     clientId:string,
-    productId:string
+    productId:string,
+    litros:number
 }
 
 export interface Purchase{
     id:string,
-    quantity:number,
+    value:number,
+    carId:string
     clientId:string,
-    productId:string
+    productId:string,
+    litros:number,
+    date:string
 }

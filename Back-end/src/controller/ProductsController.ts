@@ -10,11 +10,13 @@ export class ProductsController{
          const {nameProduct, category} = req.body
          
          const newProduct:ProductDTO = {
-            nameProduct,
-            category
+            nameProduct:nameProduct,
+            category:category
          }
 
-         await this.productsBusiness.createProduct(newProduct)
+        //  await this.productsBusiness.createProduct(newProduct)
+         console.log(newProduct);
+         
          res.status(201).send({message:"Produto adicionado para venda."})
         } catch (error:any) {
             res.status(400).send(error.message);
@@ -24,7 +26,17 @@ export class ProductsController{
     getProducts = async (req:Request, res:Response)=>{
         try {
            const result = await this.productsBusiness.getProducts()
-            res.status(400).send({message:"Nossos Produtos", result});
+            res.status(200).send({message:"Nossos Produtos", result});
+        } catch (error:any) {
+            res.status(400).send(error.message);
+        }
+    }
+
+    getProductById = async (req:Request, res:Response)=>{
+        try {
+            const idProduct = req.params.idProduct
+           const result = await this.productsBusiness.getProductById(idProduct)
+            res.status(200).send(result);
         } catch (error:any) {
             res.status(400).send(error.message);
         }

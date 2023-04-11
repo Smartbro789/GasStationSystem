@@ -35,4 +35,14 @@ export class ProductsBusiness{
             throw new Error(error.message);
         }
     }
+
+    getProductById = async (idProduct:string)=>{
+        try {
+           const result = await this.productsDatabase.productById(idProduct)
+           return result
+        } catch (error:any) {
+            throw new Error(error.message);
+            
+        }
+    }
 }

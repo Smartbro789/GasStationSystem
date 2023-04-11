@@ -16,13 +16,15 @@ class ProductsController {
         this.productsBusiness = new ProductsBusiness_1.ProductsBusiness();
         this.createProduct = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const { nameProduct, category } = req.body;
+                const nameProduct = req.body.nameProduct;
+                const category = req.body.category;
                 const newProduct = {
-                    nameProduct,
-                    category
+                    nameProduct: nameProduct,
+                    category: category
                 };
-                yield this.productsBusiness.createProduct(newProduct);
-                res.status(201).send({ message: "Produto adicionado para venda." });
+                //  await this.productsBusiness.createProduct(newProduct)
+                res.status(201).send(newProduct);
+                //  res.status(201).send({message:"Produto adicionado para venda."})
             }
             catch (error) {
                 res.status(400).send(error.message);

@@ -65,6 +65,15 @@ class UserBusiness {
                 throw new Error(error.message);
             }
         });
+        this.carsByProfile = (cpf) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this.userDatabase.carsByProfile(cpf);
+                return result;
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
     }
 }
 exports.UserBusiness = UserBusiness;

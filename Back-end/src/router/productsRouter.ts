@@ -6,3 +6,4 @@ const productsController = new ProductsController()
 
 productsRouter.get('/getAll', productsController.getProducts)
 productsRouter.post('/create', productsController.createProduct)
+productsRouter.get('/:idProduct', productsController.getProductById)
