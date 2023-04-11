@@ -3,8 +3,10 @@ import { newUser, newUserDTO, userLoginDTO } from './../model/Clients';
 import { GenerateId } from '../services/IdGenerator';
 import { UserDatabase } from './../database/UserDatabase';
 import { CpfAlreadyRegistered } from '../customError/Errors';
+import { Authenticator } from '../services/Authenticator';
 export class UserBusiness{
     userDatabase = new UserDatabase()
+    authenticator = new Authenticator()
 
     signup = async (user:newUserDTO)=>{
         try {
@@ -32,7 +34,12 @@ export class UserBusiness{
                 email
             }
 
+            const token = this.authenticator.generateToken({id})
+            
             await this.userDatabase.signup(newUser)
+            
+            return token
+
 
         } catch (error:any) {
             throw new Error(error.message);
@@ -49,10 +56,82 @@ export class UserBusiness{
             const verifyCPF = await this.userDatabase.userByCPF(cpf)
             if(verifyCPF.length != 1) throw new UserNotFound
             if(verifyCPF[0].password != password) throw new PasswordWrong
+           
+            const token = this.authenticator.generateToken({id: verifyCPF[0].id})
+            return token
 
          } catch (error:any) {
             throw new Error(error.message);
             
         }
     }
+
+    getProfile = async (authToken:string)=>{
+        try {
+            
+            
+            if(!authToken) throw new Error('token nao inserido.')
+            
+            const token = this.authenticator.getTokenData(authToken)
+            
+            if(!token) throw new Error('Nao Autorizado')
+            const result = await this.userDatabase.getProfile(token)
+            return result
+        } catch (error:any) {
+            throw new Error(error.message);
+        }
+    }
+
+    getUserById = async(idClient:string)=>{
+        try {
+            const result = this.userDatabase.userById(idClient)
+            return result
+        } catch (error:any) {
+            throw new Error(error.message);
+        }
+    }
+
+    removeClient = async(idClient:string)=>{
+        try {
+            const verifyClient = await this.userDatabase.userById(idClient)
+            if(verifyClient.length === 0) throw new UserNotFound
+
+            await this.userDatabase.removeClient(idClient)
+        } catch (error:any) {
+            throw new Error(error.message);
+        }
+    }  
+
+    changePassword = async(user:any)=>{
+        try {
+            const {newPass, idClient} = user
+
+            if(!newPass) throw new BodyNotIncompleted()
+            if(newPass.length < 6) throw new Error('A senha precisa conter 6 digitos')
+
+            const newPassword = {
+                newPass,
+                idClient
+            }
+            await this.userDatabase.changePassword(newPassword)
+        } catch (error:any) {
+            throw new Error(error.message);
+        }
+    } 
+
+    changeLimit = async(user:any)=>{
+        try {
+            const {newLimit, idClient} = user
+
+            if(!newLimit) throw new BodyNotIncompleted()
+
+            const limit = {
+                newLimit,
+                idClient
+            }
+            await this.userDatabase.changePassword(limit)
+        } catch (error:any) {
+            throw new Error(error.message);
+        }
+    } 
 }

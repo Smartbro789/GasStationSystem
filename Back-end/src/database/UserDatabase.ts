@@ -1,3 +1,4 @@
+import { AuthenticationData } from "../model/Authenticator"
 import { newUser, newUserDatabase } from "../model/Clients"
 import { BaseDatabase } from "./BaseDatabase"
 
@@ -9,7 +10,7 @@ export class UserDatabase extends BaseDatabase{
 
             const newUser:newUserDatabase = {
                 id,
-                name_client: nameClient,
+                nameClient,
                 cpf,
                 password,
                 email
@@ -22,11 +23,11 @@ export class UserDatabase extends BaseDatabase{
         }
     }
 
-    userById = async(id:string)=>{
+    userById = async(idClient:string)=>{
         try {
             const result = await UserDatabase.connection(this.TABLE_NAME)
                 .select()
-                .where({id})
+                .where({id:idClient})
             return result    
         } catch (error:any) {
             throw new Error(error.message);
@@ -54,4 +55,55 @@ export class UserDatabase extends BaseDatabase{
             throw new Error(error.message);
         }
     }
+
+    getProfile = async (token:AuthenticationData)=>{
+        try {
+          const result = await UserDatabase.connection(this.TABLE_NAME)
+            .select()
+            .where({id: token.id})
+            return result       
+        } catch (error:any) {
+            throw new Error(error.message);
+        }
+      }
+
+    removeClient = async(idClient:string)=>{
+        try {
+            await UserDatabase.connection(this.TABLE_NAME)
+            .delete()
+            .where({id:idClient})
+        } catch (error:any) {
+            throw new Error(error.message);
+            
+        }
+    }
+    
+    changePassword = async(newPassword:any)=>{
+        try {
+            const {newPass, idClient} = newPassword
+            await UserDatabase.connection(this.TABLE_NAME)
+            .update({
+                password: newPass
+            })
+            .where({id:idClient})
+        } catch (error:any) {
+            throw new Error(error.message);
+            
+        }
+    }  
+
+    changeLimit = async(user:any)=>{
+        try {
+            const {newLimit, idClient} = user
+            await UserDatabase.connection(this.TABLE_NAME)
+            .update({
+                credit_limit: newLimit
+            })
+            .where({id:idClient})
+        } catch (error:any) {
+            throw new Error(error.message);
+            
+        }
+    }  
+   
 }

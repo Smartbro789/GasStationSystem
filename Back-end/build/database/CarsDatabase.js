@@ -9,28 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PurchaseController = void 0;
-const PurchaseBusiness_1 = require("../busines/PurchaseBusiness");
-class PurchaseController {
+exports.CarsDatabase = void 0;
+const BaseDatabase_1 = require("./BaseDatabase");
+const UserDatabase_1 = require("./UserDatabase");
+class CarsDatabase extends BaseDatabase_1.BaseDatabase {
     constructor() {
-        this.purchaseBusiness = new PurchaseBusiness_1.PurchaseBusiness();
-        this.purchase = (req, res) => __awaiter(this, void 0, void 0, function* () {
+        super(...arguments);
+        this.TABLE_NAME = 'GS_Cars';
+        this.addCars = (car) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const quantity = req.body.quantity;
-                const clientId = req.params.clientId;
-                const productId = req.params.productId;
-                const newPurchase = {
-                    quantity,
-                    clientId,
-                    productId,
-                };
-                yield this.purchaseBusiness.purchase(newPurchase);
-                res.status(200).send({ message: "Compra realizada com sucesso." });
+                // await CarsDatabase.connection(this.TABLE_NAME)
+                //     .insert(car)
+                yield UserDatabase_1.UserDatabase.connection();
             }
             catch (error) {
-                res.status(400).send(error.message);
+                throw new Error(error.message);
             }
         });
     }
 }
-exports.PurchaseController = PurchaseController;
+exports.CarsDatabase = CarsDatabase;

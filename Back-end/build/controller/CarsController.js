@@ -9,28 +9,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PurchaseController = void 0;
-const PurchaseBusiness_1 = require("../busines/PurchaseBusiness");
-class PurchaseController {
+exports.CarsController = void 0;
+const CarsBusiness_1 = require("../busines/CarsBusiness");
+class CarsController {
     constructor() {
-        this.purchaseBusiness = new PurchaseBusiness_1.PurchaseBusiness();
-        this.purchase = (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.carsBusiness = new CarsBusiness_1.CarsBusiness();
+        this.addCars = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const quantity = req.body.quantity;
-                const clientId = req.params.clientId;
-                const productId = req.params.productId;
-                const newPurchase = {
-                    quantity,
-                    clientId,
-                    productId,
+                const { carName, plate } = req.body;
+                const idClient = req.body.idClient;
+                const car = {
+                    idClient,
+                    carName,
+                    plate
                 };
-                yield this.purchaseBusiness.purchase(newPurchase);
-                res.status(200).send({ message: "Compra realizada com sucesso." });
+                console.log(car);
+                yield this.carsBusiness.addCars(car);
+                res.status(201).send({ message: 'Veiculo adicionado com sucesso...' });
             }
             catch (error) {
-                res.status(400).send(error.message);
+                res.status(200).send(error.message);
             }
         });
     }
 }
-exports.PurchaseController = PurchaseController;
+exports.CarsController = CarsController;

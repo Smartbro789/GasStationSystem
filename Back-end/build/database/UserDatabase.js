@@ -65,6 +65,18 @@ class UserDatabase extends BaseDatabase_1.BaseDatabase {
                 throw new Error(error.message);
             }
         });
+        this.carsByProfile = (cpf) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield UserDatabase.connection(this.TABLE_NAME)
+                    .select()
+                    .join("GS_Cars", "GS_Clients.fk_car", "=", "GS_Cars.idCar")
+                    .where({ cpf });
+                return result;
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
     }
 }
 exports.UserDatabase = UserDatabase;

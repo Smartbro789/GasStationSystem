@@ -23,7 +23,7 @@ class UserController {
                     password,
                     email
                 };
-                yield this.userBusiness.signup(newUser);
+                // await this.userBusiness.signup(newUser)
                 res.status(201).send({ message: "Cliente cadastrado com sucesso..." });
             }
             catch (error) {
@@ -32,13 +32,24 @@ class UserController {
         });
         this.login = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const { cpf, password } = req.body;
+                const cpf = req.body.cpf;
+                const password = req.body.password;
                 const userLogin = {
                     cpf,
                     password
                 };
                 yield this.userBusiness.login(userLogin);
                 res.status(200).send({ message: "Usuario logado com sucesso." });
+            }
+            catch (error) {
+                res.status(400).send(error.message);
+            }
+        });
+        this.carsByProfile = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const cpf = req.params.cpf;
+                const result = yield this.userBusiness.carsByProfile(cpf);
+                res.status(200).send(result);
             }
             catch (error) {
                 res.status(400).send(error.message);

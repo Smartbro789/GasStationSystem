@@ -1,6 +1,6 @@
 export interface newUserDatabase{
     id:string,
-    name_client:string
+    nameClient:string
     cpf: string
     password:string
     email:string

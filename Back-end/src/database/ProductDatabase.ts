@@ -13,8 +13,8 @@ export class ProductsDatabase extends BaseDatabase {
                 category
             }
 
-            await ProductsDatabase.connection(this.TABLE_NAME)
-                .insert(newProduct)
+            // await ProductsDatabase.connection(this.TABLE_NAME)
+            //     .insert(newProduct)
 
         } catch (error:any) {
             throw new Error(error.message);
@@ -33,11 +33,11 @@ export class ProductsDatabase extends BaseDatabase {
         }
     }
 
-    productById = async(id:string)=>{
+    productById = async(idProduct:string)=>{
         try {
             const result = await ProductsDatabase.connection(this.TABLE_NAME)
                 .select()
-                .where({id})
+                .where({idProduct})
             return result    
         } catch (error:any) {
             throw new Error(error.message);
