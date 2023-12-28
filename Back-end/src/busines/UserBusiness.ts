@@ -75,7 +75,7 @@ export class UserBusiness{
             if(bonus_card_number.length != 11) throw new CpfFormat
             
             const verifyCPF = await this.userDatabase.userByCPF(bonus_card_number)
->>>>>>> Stashed changes
+
             if(verifyCPF.length != 1) throw new UserNotFound
 
          } catch (error:any) {
