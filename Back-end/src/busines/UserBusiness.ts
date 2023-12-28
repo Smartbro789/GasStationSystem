@@ -33,7 +33,7 @@ export class UserBusiness{
                 surname,
                 position,
                 dob,
-                ,
+                passport,
                 salary
             }
 
