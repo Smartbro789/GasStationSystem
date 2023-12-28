@@ -6,11 +6,14 @@ import { ContainerBase, ContainerMobile } from '../../styleGlobal';
 import { ContainerSignup } from './style';
 
 export default function SignupPage() {
-
     const [nameClient, setNameClient] = useState('')
-    const [cpf, setCpf] = useState('')
+    const [surname, setSurname] = useState('')
+    const [position, setPosition] = useState('')
+    const [salary, setSalary] = useState('')
+    const [dob, setDob] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [passport, setPassport] = useState('')
 
     const navigate = useNavigate()
 
@@ -19,9 +22,13 @@ export default function SignupPage() {
 
         const body = {
             nameClient,
-            cpf,
+            dob,
             password,
-            email
+            email,
+            surname,
+            position,
+            passport,
+            salary
         }
         
         axios
@@ -42,14 +49,24 @@ export default function SignupPage() {
             <ContainerSignup onSubmit={signup}>
                 <h2>Створити свій обліковий запис</h2>
                 <input
-                    placeholder='Повне ім`я'
+                    placeholder='Прізвище'
+                    value={surname}
+                    onChange={(ev)=>{setSurname(ev.target.value)}}
+                />
+                <input
+                    placeholder='Ім`я'
                     value={nameClient}
                     onChange={(ev)=>{setNameClient(ev.target.value)}}
                 />
                 <input
-                    placeholder='Cpf'
-                    value={cpf}
-                    onChange={(ev)=>{setCpf(ev.target.value)}}
+                    placeholder='Посада'
+                    value={position}
+                    onChange={(ev)=>{setPosition(ev.target.value)}}
+                />
+                <input
+                    placeholder='Passport'
+                    value={passport}
+                    onChange={(ev)=>{setPassport(ev.target.value)}}
                 />
                 <input
                     type='email'
@@ -62,6 +79,16 @@ export default function SignupPage() {
                     placeholder='Пароль'
                     value={password}
                     onChange={(ev)=>{setPassword(ev.target.value)}}
+                />
+                <input
+                    placeholder='Дата народження'
+                    value={dob}
+                    onChange={(ev)=>{setDob(ev.target.value)}}
+                />
+                <input
+                    placeholder='Заробітня плата'
+                    value={salary}
+                    onChange={(ev)=>{setSalary(ev.target.value)}}
                 />
                 <button>Відправити запит</button>
                 <button onClick={()=>{navigate('/login')}} type='button'>Назад</button>

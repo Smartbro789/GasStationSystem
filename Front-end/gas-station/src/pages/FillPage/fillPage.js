@@ -39,7 +39,7 @@ export default function FillPage() {
                    <table border={0}>
                         <tbody>
                             <tr>
-                                <th>Тарілка</th>
+                                <th>Номерний знак</th>
                                 <th>Продукт</th>
                                 <th>Значення</th>
                                 <th>Літри</th>

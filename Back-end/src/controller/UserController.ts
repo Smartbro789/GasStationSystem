@@ -1,20 +1,24 @@
-import { userLoginDTO } from './../model/Clients';
+import { userLoginDTO } from '../model/User';
 import { UserBusiness } from "../busines/UserBusiness";
-import { newUserDTO } from "../model/Clients";
+import { newUserDTO } from "../model/User";
 import { Request, Response } from 'express';
-
+import cookie from 'cookie';
 export class UserController{
     userBusiness = new UserBusiness()
 
     signup = async (req:Request, res:Response) =>{
         try {
-            const {nameClient, cpf, password, email} = req.body
+            const {email, password, name,surname ,position, dob, passport, salary} = req.body
 
             const newUser:newUserDTO = {
-                nameClient,
-                cpf,
+                email,
                 password,
-                email
+                name,
+                surname,
+                position,
+                dob,
+                passport,
+                salary
             }
 
             const token = await this.userBusiness.signup(newUser)
@@ -26,15 +30,22 @@ export class UserController{
 
     login = async(req:Request, res:Response) =>{
         try {
-            const cpf = req.body.cpf
+            const passport = req.body.passport
             const password = req.body.password
 
             const userLogin:userLoginDTO = {
-                cpf, 
+                passport,
                 password
             } 
-             const token = await this.userBusiness.login(userLogin)
-            
+            const token = await this.userBusiness.login(userLogin)
+            const cookieValue = cookie.serialize('session', token, {
+                httpOnly: true,
+                secure: true,
+                maxAge: 60*60*24, // 1 day
+                sameSite: 'strict',
+                path: '/'
+            });
+            res.setHeader('Set-Cookie', cookieValue);
             res.status(200).send({message: "Користувач успішно ввійшов.", token})
         } catch (error:any) {
             res.status(400).send(error.message)
