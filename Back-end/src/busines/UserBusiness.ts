@@ -3,13 +3,13 @@ import { newUser, newUserDTO, userLoginDTO } from '../model/User';
 import { GenerateId } from '../services/IdGenerator';
 import { UserDatabase } from './../database/UserDatabase';
 import { CpfAlreadyRegistered } from '../customError/Errors';
-import { Authenticator } from '../services/Authenticator';
+
 export class UserBusiness{
     userDatabase = new UserDatabase()
-    authenticator = new Authenticator()
 
     signup = async (user:newUserDTO)=>{
         try {
+<<<<<<< Updated upstream
             const {email, password, name,surname ,position, dob, passport, salary} = user
 
             // if(!name || !passport || !password || !email) throw new BodyNotIncompleted
@@ -21,12 +21,22 @@ export class UserBusiness{
             if(verifyEmail.length != 0) throw new EmailAlreadyRegistered
             
             const verifyCPF = await this.userDatabase.userByPassport(passport)
+=======
+            const {name, bonus_card_number} = user
+
+            if(!name || !bonus_card_number) throw new BodyNotIncompleted
+            if(bonus_card_number.length != 11) throw new CpfFormat
+            if(name.length < 3) throw new NameFormat
+            
+            const verifyCPF = await this.userDatabase.userByCPF(bonus_card_number)
+>>>>>>> Stashed changes
             if(verifyCPF.length != 0) throw new CpfAlreadyRegistered
             
             const id = GenerateId.newID()
 
             const newUser:newUser = {
                 id,
+<<<<<<< Updated upstream
                 email,
                 password,
                 name,
@@ -35,13 +45,13 @@ export class UserBusiness{
                 dob,
                 passport,
                 salary
+=======
+                name,
+                bonus_card_number,
+>>>>>>> Stashed changes
             }
-
-            const token = this.authenticator.generateToken({id})
             
             await this.userDatabase.signup(newUser)
-            
-            return token
 
 
         } catch (error:any) {
@@ -51,17 +61,22 @@ export class UserBusiness{
 
     login = async(userLogin:userLoginDTO) =>{
         try {
+<<<<<<< Updated upstream
             const {passport, password } = userLogin
 
             if(!password || !password) throw new BodyNotIncompleted;
             if(passport.length != 11) throw new CpfFormat
             
             const verifyCPF = await this.userDatabase.userByPassport(passport)
+=======
+            const {bonus_card_number } = userLogin
+
+            if(!bonus_card_number) throw new BodyNotIncompleted;
+            if(bonus_card_number.length != 11) throw new CpfFormat
+            
+            const verifyCPF = await this.userDatabase.userByCPF(bonus_card_number)
+>>>>>>> Stashed changes
             if(verifyCPF.length != 1) throw new UserNotFound
-            if(verifyCPF[0].password != password) throw new PasswordWrong
-           
-            const token = this.authenticator.generateToken({id: verifyCPF[0].id})
-            return token
 
          } catch (error:any) {
             throw new Error(error.message);
@@ -69,14 +84,12 @@ export class UserBusiness{
         }
     }
 
-    getProfile = async (authToken:string)=>{
+    getProfile = async (id:bigint)=>{
         try {
-            
-            
-            if(!authToken) throw new Error('Токен не вставлено.')
-            
+            if(!id) throw new Error('Токен не вставлено.')
+
             const token = this.authenticator.getTokenData(authToken)
-            
+
             if(!token) throw new Error('Не авторизовано')
             const result = await this.userDatabase.getProfile(token)
             return result

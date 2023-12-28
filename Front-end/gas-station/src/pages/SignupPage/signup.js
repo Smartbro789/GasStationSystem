@@ -6,6 +6,7 @@ import { ContainerBase, ContainerMobile } from '../../styleGlobal';
 import { ContainerSignup } from './style';
 
 export default function SignupPage() {
+<<<<<<< Updated upstream
     const [nameClient, setNameClient] = useState('')
     const [surname, setSurname] = useState('')
     const [position, setPosition] = useState('')
@@ -14,6 +15,12 @@ export default function SignupPage() {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [passport, setPassport] = useState('')
+=======
+
+    const [name, setNameClient] = useState('')
+    const [bonus_card_number, setBonusCardNumber] = useState('')
+    const [password, setPassword] = useState('')
+>>>>>>> Stashed changes
 
     const navigate = useNavigate()
 
@@ -21,6 +28,7 @@ export default function SignupPage() {
         ev.preventDefault()
 
         const body = {
+<<<<<<< Updated upstream
             nameClient,
             dob,
             password,
@@ -29,6 +37,11 @@ export default function SignupPage() {
             position,
             passport,
             salary
+=======
+            name,
+            bonus_card_number,
+            password,
+>>>>>>> Stashed changes
         }
         
         axios
@@ -49,6 +62,7 @@ export default function SignupPage() {
             <ContainerSignup onSubmit={signup}>
                 <h2>Створити свій обліковий запис</h2>
                 <input
+<<<<<<< Updated upstream
                     placeholder='Прізвище'
                     value={surname}
                     onChange={(ev)=>{setSurname(ev.target.value)}}
@@ -79,6 +93,16 @@ export default function SignupPage() {
                     placeholder='Пароль'
                     value={password}
                     onChange={(ev)=>{setPassword(ev.target.value)}}
+=======
+                    placeholder='Повне ім`я'
+                    value={name}
+                    onChange={(ev)=>{setNameClient(ev.target.value)}}
+                />
+                <input
+                    placeholder='Номер бонусної картки'
+                    value={bonus_card_number}
+                    onChange={(ev)=>{setBonusCardNumber(ev.target.value)}}
+>>>>>>> Stashed changes
                 />
                 <input
                     placeholder='Дата народження'

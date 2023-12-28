@@ -9,14 +9,12 @@ export default function LoginPage() {
 
   const navigate = useNavigate('')
   const[cpf, setCpf] = useState('')
-  const[password, setPassword] = useState('')
 
   const sendLogin = (ev)=>{
     ev.preventDefault()
     
     const body = {
       cpf,
-      password
     }
     
     axios
@@ -49,15 +47,6 @@ export default function LoginPage() {
                     value={cpf}
                     onChange={(ev)=>{setCpf(ev.target.value)}}
                   />
-              </fieldset>
-              <fieldset>
-                <legend>Введіть свій пароль</legend>
-                <input
-                type='password'
-                  placeholder='senha'
-                  value={password}
-                  onChange={(ev)=>{setPassword(ev.target.value)}}
-                />
               </fieldset>
               <button onClick = {sendLogin} >Увійти</button>
               <button onClick={()=>{navigate('/signup')}}>Зареєструватися</button>

@@ -6,6 +6,7 @@ export class UserDatabase extends BaseDatabase{
     TABLE_NAME = 'user'
     signup = async (user:newUser)=>{
         try {
+<<<<<<< Updated upstream
             const {id, email, password, name,surname ,position, dob, passport, salary} = user
 
             const newUser:newUserDatabase = {
@@ -18,6 +19,14 @@ export class UserDatabase extends BaseDatabase{
                 dob,
                 passport,
                 salary
+=======
+            const {id, name, bonus_card_number} = user
+
+            const newUser:newUserDatabase = {
+                id,
+                name,
+                bonus_card_number,
+>>>>>>> Stashed changes
             }
             await UserDatabase.connection(this.TABLE_NAME)
                 .insert(newUser)
@@ -38,11 +47,19 @@ export class UserDatabase extends BaseDatabase{
         }
     }
 
+<<<<<<< Updated upstream
     userByPassport = async(passport:string)=>{
         try {
             const result = await UserDatabase.connection(this.TABLE_NAME)
                 .select()
                 .where({passport})
+=======
+    userByCPF = async(bonus_card_number:string)=>{
+        try {
+            const result = await UserDatabase.connection(this.TABLE_NAME)
+                .select()
+                .where({bonus_card_number})
+>>>>>>> Stashed changes
             return result    
         } catch (error:any) {
             throw new Error(error.message);
@@ -60,7 +77,7 @@ export class UserDatabase extends BaseDatabase{
         }
     }
 
-    getProfile = async (token:AuthenticationData)=>{
+    getProfile = async (token: AuthenticationData)=>{
         try {
           const result = await UserDatabase.connection(this.TABLE_NAME)
             .select()

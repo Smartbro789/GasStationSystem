@@ -8,6 +8,7 @@ export class UserController{
 
     signup = async (req:Request, res:Response) =>{
         try {
+<<<<<<< Updated upstream
             const {email, password, name,surname ,position, dob, passport, salary} = req.body
 
             const newUser:newUserDTO = {
@@ -19,6 +20,13 @@ export class UserController{
                 dob,
                 passport,
                 salary
+=======
+            const {name, bonus_card_number, password, email} = req.body
+
+            const newUser:newUserDTO = {
+                name,
+                bonus_card_number,
+>>>>>>> Stashed changes
             }
 
             const token = await this.userBusiness.signup(newUser)
@@ -30,12 +38,19 @@ export class UserController{
 
     login = async(req:Request, res:Response) =>{
         try {
+<<<<<<< Updated upstream
             const passport = req.body.passport
             const password = req.body.password
 
             const userLogin:userLoginDTO = {
                 passport,
                 password
+=======
+            const bonus_card_number = req.body.bonus_card_number
+
+            const userLogin:userLoginDTO = {
+                bonus_card_number,
+>>>>>>> Stashed changes
             } 
             const token = await this.userBusiness.login(userLogin)
             const cookieValue = cookie.serialize('session', token, {
