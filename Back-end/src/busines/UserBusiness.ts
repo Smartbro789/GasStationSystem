@@ -9,7 +9,7 @@ export class UserBusiness{
 
     signup = async (user:newUserDTO)=>{
         try {
-<<<<<<< Updated upstream
+
             const {email, password, name,surname ,position, dob, passport, salary} = user
 
             // if(!name || !passport || !password || !email) throw new BodyNotIncompleted
@@ -21,7 +21,7 @@ export class UserBusiness{
             if(verifyEmail.length != 0) throw new EmailAlreadyRegistered
             
             const verifyCPF = await this.userDatabase.userByPassport(passport)
-=======
+
             const {name, bonus_card_number} = user
 
             if(!name || !bonus_card_number) throw new BodyNotIncompleted
@@ -29,14 +29,14 @@ export class UserBusiness{
             if(name.length < 3) throw new NameFormat
             
             const verifyCPF = await this.userDatabase.userByCPF(bonus_card_number)
->>>>>>> Stashed changes
+
             if(verifyCPF.length != 0) throw new CpfAlreadyRegistered
             
             const id = GenerateId.newID()
 
             const newUser:newUser = {
                 id,
-<<<<<<< Updated upstream
+
                 email,
                 password,
                 name,
@@ -45,10 +45,10 @@ export class UserBusiness{
                 dob,
                 passport,
                 salary
-=======
+
                 name,
                 bonus_card_number,
->>>>>>> Stashed changes
+
             }
             
             await this.userDatabase.signup(newUser)
