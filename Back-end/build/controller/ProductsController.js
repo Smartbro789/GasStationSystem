@@ -16,15 +16,14 @@ class ProductsController {
         this.productsBusiness = new ProductsBusiness_1.ProductsBusiness();
         this.createProduct = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const nameProduct = req.body.nameProduct;
-                const category = req.body.category;
+                const { nameProduct, category } = req.body;
                 const newProduct = {
                     nameProduct: nameProduct,
                     category: category
                 };
                 //  await this.productsBusiness.createProduct(newProduct)
-                res.status(201).send(newProduct);
-                //  res.status(201).send({message:"Produto adicionado para venda."})
+                console.log(newProduct);
+                res.status(201).send({ message: "Товар доданий до продажу." });
             }
             catch (error) {
                 res.status(400).send(error.message);
@@ -33,7 +32,17 @@ class ProductsController {
         this.getProducts = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield this.productsBusiness.getProducts();
-                res.status(400).send({ message: "Nossos Produtos", result });
+                res.status(200).send({ message: "Наші продукти", result });
+            }
+            catch (error) {
+                res.status(400).send(error.message);
+            }
+        });
+        this.getProductById = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const idProduct = req.params.idProduct;
+                const result = yield this.productsBusiness.getProductById(idProduct);
+                res.status(200).send(result);
             }
             catch (error) {
                 res.status(400).send(error.message);

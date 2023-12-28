@@ -23,8 +23,8 @@ class UserController {
                     password,
                     email
                 };
-                // await this.userBusiness.signup(newUser)
-                res.status(201).send({ message: "Cliente cadastrado com sucesso..." });
+                const token = yield this.userBusiness.signup(newUser);
+                res.status(201).send({ message: "Клієнт успішно зареєстрований", token });
             }
             catch (error) {
                 res.status(400).send(error.message);
@@ -38,18 +38,69 @@ class UserController {
                     cpf,
                     password
                 };
-                yield this.userBusiness.login(userLogin);
-                res.status(200).send({ message: "Usuario logado com sucesso." });
+                const token = yield this.userBusiness.login(userLogin);
+                res.status(200).send({ message: "Користувач успішно ввійшов.", token });
             }
             catch (error) {
                 res.status(400).send(error.message);
             }
         });
-        this.carsByProfile = (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.getProfile = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const cpf = req.params.cpf;
-                const result = yield this.userBusiness.carsByProfile(cpf);
+                const authToken = req.headers.authorization;
+                const token = yield this.userBusiness.getProfile(authToken);
+                res.status(200).send(token);
+            }
+            catch (error) {
+                res.status(400).send(error.message);
+            }
+        });
+        this.getUserById = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const idClient = req.params.idClient;
+                const result = yield this.userBusiness.getUserById(idClient);
                 res.status(200).send(result);
+            }
+            catch (error) {
+                res.status(400).send(error.message);
+            }
+        });
+        this.removeClient = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const idClient = req.params.idClient;
+                yield this.userBusiness.removeClient(idClient);
+                res.status(200).send({ message: 'Ваш обліковий запис успішно видалено' });
+            }
+            catch (error) {
+                res.status(400).send(error.message);
+            }
+        });
+        this.changePassword = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const newPass = req.body.newPass;
+                const idClient = req.params.idClient;
+                const user = {
+                    newPass,
+                    idClient
+                };
+                yield this.userBusiness.changePassword(user);
+                res.status(200).send({ message: 'Ваш пароль успішно змінено' });
+            }
+            catch (error) {
+                res.status(400).send(error.message);
+            }
+        });
+        this.changeLimit = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const newLimit = req.body.newLimit;
+                const idClient = req.params.idClient;
+                const user = {
+                    newLimit,
+                    idClient
+                };
+                console.log(user);
+                yield this.userBusiness.changePassword(user);
+                res.status(200).send({ message: 'Ваш ліміт успішно змінено' });
             }
             catch (error) {
                 res.status(400).send(error.message);

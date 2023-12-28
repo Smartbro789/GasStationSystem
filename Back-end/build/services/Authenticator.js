@@ -31,15 +31,16 @@ const jwt = __importStar(require("jsonwebtoken"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 class Authenticator {
-    generateToken(input, expiresIn = process.env.ACCESS_TOKEN_EXPIRES_IN) {
+    generateToken(input) {
         const token = jwt.sign({
             id: input.id,
+            role: input.role
         }, process.env.JWT_KEY, {
-            expiresIn,
+            expiresIn: '6h',
         });
         return token;
     }
-    getData(token) {
+    getTokenData(token) {
         const payload = jwt.verify(token, process.env.JWT_KEY);
         const result = {
             id: payload.id,

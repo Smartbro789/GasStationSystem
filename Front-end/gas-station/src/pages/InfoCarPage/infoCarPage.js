@@ -28,16 +28,16 @@ export default function InfoCarPage() {
             <ContainerCar key={key}>
                 <section>
                     <div>
-                        <label>Placa veiculo</label>
+                        <label>Номерний знак транспортного засобу</label>
                         <span>{car.plate}</span>
                     </div>
                     <div>
-                        <label>Nome veiculo:</label>
+                        <label>Назва транспортного засобу:</label>
                         <span>{car.carName}</span>
                     </div>
                     <div>
-                        <button onClick={()=>{navigate('/meuscarros')}}>Voltar</button>
-                        <button className='remove' onClick={removeCar}>Excluir</button>
+                        <button onClick={()=>{navigate('/meuscarros')}}>Назад</button>
+                        <button className='remove' onClick={removeCar}>Видалити</button>
                     </div>
                 </section>
             </ContainerCar>

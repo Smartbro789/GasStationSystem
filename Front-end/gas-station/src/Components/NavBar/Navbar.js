@@ -7,7 +7,7 @@ export default function NavBar() {
     const navigate = useNavigate()
 
     const logout = ()=>{
-      const confirm = window.confirm('Deseja realizar o logout?')
+      const confirm = window.confirm('Ви хочете вийти?')
       if(confirm){
         localStorage.clear()
         navigate('/login')

@@ -24,7 +24,7 @@ export class PurchaseController{
             }
 
             await this.purchaseBusiness.purchase(newPurchase)
-            res.status(200).send({message:"Compra realizada com sucesso."})
+            res.status(200).send({message:"Покупку здійснено успішно."})
         } catch (error:any) {
             res.status(400).send(error.message);
         }

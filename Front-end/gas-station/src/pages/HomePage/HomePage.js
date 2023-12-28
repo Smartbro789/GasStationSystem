@@ -27,13 +27,13 @@ export default function HomePage() {
         localStorage.setItem('idClient', client.id)
         return(
             <ContainerInfo key={key}>
-                    <h3>Bem vindo, {client.nameClient}</h3>
+                    <h3>Ласкаво просимо, {client.nameClient}</h3>
                     <div>
-                        <label>Limite Total:</label>
+                        <label>Загальний ліміт:</label>
                         <span>R$ {limitTotal.toFixed(2)}</span>
                     </div>
                     <div>
-                        <label>Limite disponivel:</label>
+                        <label>Доступний ліміт:</label>
                         <span>R$ {(limitTotal-getValues).toFixed(2)}</span>
                     </div>
                 </ContainerInfo>
@@ -49,15 +49,15 @@ export default function HomePage() {
                 <ContainerServices>
                     <CardService>
                         <img alt='Abastecimentos' onClick={()=>{navigate('/abastecimentos')}} src='https://cdn-icons-png.flaticon.com/512/8082/8082687.png'/>
-                        <span>Abastecimentos</span>
+                        <span>Транспортні засоби</span>
                     </CardService>
                     <CardService>
                         <img alt='Veiculos' onClick={()=>{navigate('/meusCarros')}} src='https://cdn-icons-png.flaticon.com/512/6668/6668689.png'/>
-                        <span>Veículos</span>
+                        <span>Транспортні засоби</span>
                     </CardService>
                     <CardService>
                         <img alt='Produtos' onClick={()=>{navigate('/Produtos')}} src='https://cdn-icons-png.flaticon.com/512/481/481233.png'/>
-                        <span>Produtos</span>
+                        <span>Продукти</span>
                         
                     </CardService>
                 </ContainerServices>

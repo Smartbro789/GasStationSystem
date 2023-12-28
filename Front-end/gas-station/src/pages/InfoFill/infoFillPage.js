@@ -16,36 +16,36 @@ const [data] = useRequestData(`http://localhost:3003/purchases/infopurchase/${lo
 const renderInfo = data.map((purchase, key)=>{
     return(
         <main key={key}>
-            <h2>Detalhes da compra</h2>
+            <h2>Деталі покупки</h2>
                 <div>
-                    <label>Carro:</label>
+                    <label>Машина:</label>
                     <span>{purchase.carName}</span>
                 </div>
                 <div>
-                    <label>Categoria:</label>
+                    <label>Категорія:</label>
                     <span>{purchase.category}</span>
                 </div>
                 <div>
-                    <label>Data da compra:</label>
+                    <label>Дата покупки:</label>
                     <span>{purchase.date}</span>
                 </div>
                 <div>
-                    <label>Litros:</label>
-                    <span>{purchase.litros} litros</span>
+                    <label>Літри:</label>
+                    <span>{purchase.litros} літрів</span>
                 </div>
                 <div>
-                    <label>Valor:</label>
+                    <label>Значення:</label>
                     <span>R$ {purchase.price.toFixed(2)}</span>
                 </div>
                 <div>
-                    <label>Placa do Carro:</label>
+                    <label>Номерний знак:</label>
                     <span>{purchase.plate}</span>
                 </div>
                 <div>
-                    <label>Valor abastecido:</label>
+                    <label>Цінність, що постачається:</label>
                     <span>R$ {purchase.value.toFixed(2)}</span>
                 </div>
-                <button onClick={()=>{navigate('/abastecimentos')}}>Voltar</button>
+                <button onClick={()=>{navigate('/abastecimentos')}}>Назад</button>
         </main>
     )
 })

@@ -46,7 +46,7 @@ export default function MyCarsPage() {
             <Header/>
             <ContainerMyCars>
                 <header>
-                    <h2>Meus Carros</h2>
+                    <h2>Мої машини</h2>
                 </header>
                 <main>
                     <section>
@@ -54,16 +54,16 @@ export default function MyCarsPage() {
                     </section>
                     <form onSubmit={addCar}>
                         <input
-                            placeholder='Nome/Modelo automóvel'
+                            placeholder='Назва/Модель авто'
                              value={car}
                                onChange={(ev)=>{setCar(ev.target.value)}}
                         />
                         <input
-                               placeholder='placa do veiculo.'
+                               placeholder='Номерний знак автомобіля.'
                             value={plate}
                             onChange={(ev)=>{setPlate(ev.target.value)}}
                         />
-                        <button>Cadastrar</button>
+                        <button>Зареєструватися</button>
                     </form>
                 </main>
             </ContainerMyCars>

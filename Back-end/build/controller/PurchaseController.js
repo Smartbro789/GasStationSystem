@@ -16,16 +16,41 @@ class PurchaseController {
         this.purchaseBusiness = new PurchaseBusiness_1.PurchaseBusiness();
         this.purchase = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const quantity = req.body.quantity;
+                const value = req.body.value;
+                const litros = req.body.litros;
                 const clientId = req.params.clientId;
                 const productId = req.params.productId;
+                const carId = req.params.carId;
+                const accountId = req.params.accountId;
                 const newPurchase = {
-                    quantity,
+                    value,
                     clientId,
                     productId,
+                    carId,
+                    litros
                 };
                 yield this.purchaseBusiness.purchase(newPurchase);
-                res.status(200).send({ message: "Compra realizada com sucesso." });
+                res.status(200).send({ message: "Покупку здійснено успішно." });
+            }
+            catch (error) {
+                res.status(400).send(error.message);
+            }
+        });
+        this.purchaseByClient = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { clientId } = req.params;
+                const result = yield this.purchaseBusiness.purchaseByClient(clientId);
+                res.status(200).send(result);
+            }
+            catch (error) {
+                res.status(400).send(error.message);
+            }
+        });
+        this.getInfoPurchase = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const idPurchase = req.params.idPurchase;
+                const result = yield this.purchaseBusiness.getInfoPurchase(idPurchase);
+                res.status(200).send(result);
             }
             catch (error) {
                 res.status(400).send(error.message);

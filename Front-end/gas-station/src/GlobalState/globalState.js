@@ -14,7 +14,7 @@ export const GlobalState = (props)=>{
             date:'13/05',
             car:'GOLF',
             quantity:5.3,
-            product:'Gasolina',
+            product:'Gasoline',
             value:25,
             plate:'GYO1440'
         },

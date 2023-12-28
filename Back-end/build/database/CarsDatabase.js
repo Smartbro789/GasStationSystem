@@ -11,16 +11,52 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CarsDatabase = void 0;
 const BaseDatabase_1 = require("./BaseDatabase");
-const UserDatabase_1 = require("./UserDatabase");
 class CarsDatabase extends BaseDatabase_1.BaseDatabase {
     constructor() {
         super(...arguments);
         this.TABLE_NAME = 'GS_Cars';
-        this.addCars = (car) => __awaiter(this, void 0, void 0, function* () {
+        this.myCars = (idClient) => __awaiter(this, void 0, void 0, function* () {
             try {
-                // await CarsDatabase.connection(this.TABLE_NAME)
-                //     .insert(car)
-                yield UserDatabase_1.UserDatabase.connection();
+                const result = yield CarsDatabase.connection(this.TABLE_NAME)
+                    .select()
+                    .where({
+                    client_id: idClient
+                });
+                return result;
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
+        this.addCar = (car) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield CarsDatabase.connection(this.TABLE_NAME)
+                    .insert(car);
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
+        this.removeCar = (idCar) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield CarsDatabase.connection(this.TABLE_NAME)
+                    .delete()
+                    .where({
+                    idCar
+                });
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
+        this.getInfoCar = (idCar) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield CarsDatabase.connection(this.TABLE_NAME)
+                    .select()
+                    .where({
+                    idCar
+                });
+                return result;
             }
             catch (error) {
                 throw new Error(error.message);

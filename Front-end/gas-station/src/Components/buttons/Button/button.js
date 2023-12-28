@@ -3,6 +3,6 @@ import { Button } from './style';
 
 export default function Button() {
  return (
-   <Button>Excluir</Button>
+   <Button>Видалити</Button>
  );
 }

@@ -33,16 +33,16 @@ export default function FillPage() {
             <Header/>
             <ContainerFill>
                 <header>
-                    <h2>Abastecimentos</h2>
+                    <h2>Запаси</h2>
                 </header>
                 <main>
                    <table border={0}>
                         <tbody>
                             <tr>
-                                <th>Placa</th>
-                                <th>Produto</th>
-                                <th>Valor</th>
-                                <th>Litros</th>
+                                <th>Тарілка</th>
+                                <th>Продукт</th>
+                                <th>Значення</th>
+                                <th>Літри</th>
                             </tr>
                             {renderFills}
                         </tbody>

@@ -39,10 +39,10 @@ export default function LoginPage() {
               <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs5WOi07gs_8ASAqHRiWxpTxD4UW6T-zg3ug&usqp=CAU'/>
             </section>
             <form>
-              <h3>Bem vindo ao GS.</h3>
-              <h4>Login</h4>
+              <h3>Ласкаво просимо до EnergoFill.</h3>
+              <h4>Увійти</h4>
               <fieldset>
-                <legend>Digite seu CPF</legend>
+                <legend>Введіть свій CPF</legend>
                   <input
                     maxLength={11}
                     placeholder='cpf'
@@ -51,7 +51,7 @@ export default function LoginPage() {
                   />
               </fieldset>
               <fieldset>
-                <legend>Digite sua senha</legend>
+                <legend>Введіть свій пароль</legend>
                 <input
                 type='password'
                   placeholder='senha'
@@ -59,8 +59,8 @@ export default function LoginPage() {
                   onChange={(ev)=>{setPassword(ev.target.value)}}
                 />
               </fieldset>
-              <button onClick = {sendLogin} >Login</button>
-              <button onClick={()=>{navigate('/signup')}}>Signup</button>
+              <button onClick = {sendLogin} >Увійти</button>
+              <button onClick={()=>{navigate('/signup')}}>Зареєструватися</button>
             </form>
           </ContainerLogin>
         </ContainerMobile>

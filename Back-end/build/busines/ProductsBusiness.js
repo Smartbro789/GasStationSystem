@@ -42,6 +42,15 @@ class ProductsBusiness {
                 throw new Error(error.message);
             }
         });
+        this.getProductById = (idProduct) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this.productsDatabase.productById(idProduct);
+                return result;
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
     }
 }
 exports.ProductsBusiness = ProductsBusiness;

@@ -31,7 +31,7 @@ export default function ProductsPage() {
         <ContainerMobile>
             <Header/>
             <ContainerProduct>
-                <h2> Escolha seu produto.</h2>
+                <h2>Виберіть свій продукт.</h2>
                 <form>
                     {renderProducts}
                 </form>

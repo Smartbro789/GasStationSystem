@@ -14,21 +14,50 @@ const CarsBusiness_1 = require("../busines/CarsBusiness");
 class CarsController {
     constructor() {
         this.carsBusiness = new CarsBusiness_1.CarsBusiness();
-        this.addCars = (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.myCars = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const { carName, plate } = req.body;
-                const idClient = req.body.idClient;
-                const car = {
-                    idClient,
-                    carName,
-                    plate
-                };
-                console.log(car);
-                yield this.carsBusiness.addCars(car);
-                res.status(201).send({ message: 'Veiculo adicionado com sucesso...' });
+                const { idClient } = req.params;
+                const result = yield this.carsBusiness.myCars(idClient);
+                res.status(200).send(result);
             }
             catch (error) {
-                res.status(200).send(error.message);
+                res.status(400).send(error.message);
+            }
+        });
+        this.addCar = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { carName, plate } = req.body;
+                const { idClient } = req.params;
+                const newCar = {
+                    carName,
+                    plate,
+                    idClient
+                };
+                yield this.carsBusiness.addCar(newCar);
+                res.status(200).send({ message: 'Автомобіль успішно зареєстрований' });
+            }
+            catch (error) {
+                res.status(400).send(error.message);
+            }
+        });
+        this.removeCar = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { idCar } = req.params;
+                yield this.carsBusiness.removeCar(idCar);
+                res.status(200).send({ message: 'Автомобіль успішно видалено' });
+            }
+            catch (error) {
+                res.status(400).send(error.message);
+            }
+        });
+        this.getInfoCar = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { idCar } = req.params;
+                const result = yield this.carsBusiness.getInfoCar(idCar);
+                res.status(200).send(result);
+            }
+            catch (error) {
+                res.status(400).send(error.message);
             }
         });
     }

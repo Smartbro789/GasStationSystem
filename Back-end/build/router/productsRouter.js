@@ -10,3 +10,4 @@ exports.productsRouter = express_1.default.Router();
 const productsController = new ProductsController_1.ProductsController();
 exports.productsRouter.get('/getAll', productsController.getProducts);
 exports.productsRouter.post('/create', productsController.createProduct);
+exports.productsRouter.get('/:idProduct', productsController.getProductById);

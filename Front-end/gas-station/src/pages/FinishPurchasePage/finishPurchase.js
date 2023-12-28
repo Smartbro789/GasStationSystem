@@ -40,7 +40,7 @@ export default function FinishPurchasePage() {
         ev.preventDefault()
 
         if(!cars.length) {
-            alert('Você não possui nenhum carro cadastrado...')
+            alert('У вас немає зареєстрованого автомобіля')
         }
 
         else{
@@ -69,7 +69,7 @@ export default function FinishPurchasePage() {
 
     const verifyCars = ()=>{
         if(cars.length === 0){
-            return <p>Você não tem nenhum carro cadastrado</p>
+            return <p>У вас немає зареєстрованого автомобіля</p>
         } else {
             return renderCars
         }
@@ -81,26 +81,26 @@ export default function FinishPurchasePage() {
             <Header/>
             <ContainerFinish>
                 <InfoProduct>
-                    <h2>Produto</h2>
+                    <h2>Продукт</h2>
                     {renderProduct}
                 </InfoProduct>
                 <MyCars>
                 <fieldset>
-                    <legend>Meus carros</legend>
+                    <legend>Мої машини</legend>
                     {verifyCars()}
                 </fieldset> 
                 </MyCars>
                 <Purchase>
                     <form onSubmit={sendFinish}>
                         <div>
-                            <span>Valor para abastecer: </span>
+                            <span>Вартість постачання: </span>
                             <input
                                 type='number'
                                 value={value}
                                 onChange={(ev)=>{setValue(ev.target.value)}}
                             />
-                            <p>Litros: {calcLts()}</p>
-                            <button>Comprar</button>
+                            <p>Літри: {calcLts()}</p>
+                            <button>Купити</button>
                         </div>
                     </form>
                 </Purchase>

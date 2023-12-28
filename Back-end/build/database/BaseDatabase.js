@@ -9,6 +9,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 class BaseDatabase {
 }
+exports.BaseDatabase = BaseDatabase;
 BaseDatabase.connection = (0, knex_1.default)({
     client: "mysql",
     connection: {
@@ -19,4 +20,3 @@ BaseDatabase.connection = (0, knex_1.default)({
         database: process.env.DB_DATABASE
     }
 });
-exports.BaseDatabase = BaseDatabase;

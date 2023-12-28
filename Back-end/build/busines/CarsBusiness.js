@@ -11,24 +11,49 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CarsBusiness = void 0;
 const CarsDatabase_1 = require("../database/CarsDatabase");
-const UserDatabase_1 = require("../database/UserDatabase");
 const IdGenerator_1 = require("../services/IdGenerator");
 class CarsBusiness {
     constructor() {
         this.carsDatabase = new CarsDatabase_1.CarsDatabase();
-        this.clientsDatabase = new UserDatabase_1.UserDatabase();
-        this.addCars = (car) => __awaiter(this, void 0, void 0, function* () {
+        this.myCars = (idClient) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this.carsDatabase.myCars(idClient);
+                return result;
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
+        this.addCar = (car) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const { carName, plate, idClient } = car;
                 if (!carName || !plate)
-                    throw new Error("Nome e placa precisam ser inseridos.");
-                const id = IdGenerator_1.GenerateId.newID();
+                    throw new Error("Необхідно заповнити всі поля");
+                const idCar = IdGenerator_1.GenerateId.newID();
                 const newCar = {
-                    id,
+                    idCar,
                     carName,
-                    plate
+                    plate,
+                    client_id: idClient
                 };
-                yield this.carsDatabase.addCars(newCar);
+                yield this.carsDatabase.addCar(newCar);
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
+        this.removeCar = (idCar) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield this.carsDatabase.removeCar(idCar);
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
+        this.getInfoCar = (idCar) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this.carsDatabase.getInfoCar(idCar);
+                return result;
             }
             catch (error) {
                 throw new Error(error.message);

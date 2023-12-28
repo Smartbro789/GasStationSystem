@@ -27,7 +27,7 @@ export class CarsController{
             }
            
             await this.carsBusiness.addCar(newCar)
-            res.status(200).send({message:'Carro foi cadastrado com sucesso...'})
+            res.status(200).send({message:'Автомобіль успішно зареєстрований'})
 
         } catch (error:any) {
             res.status(400).send(error.message)
@@ -38,7 +38,7 @@ export class CarsController{
         try {
             const {idCar} = req.params
             await this.carsBusiness.removeCar(idCar)
-            res.status(200).send({message:'Carro foi removido com sucesso...'})
+            res.status(200).send({message:'Автомобіль успішно вилучено'})
         } catch (error:any) {
             res.status(400).send(error.message)
         }

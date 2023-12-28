@@ -18,7 +18,7 @@ export class UserController{
             }
 
             const token = await this.userBusiness.signup(newUser)
-            res.status(201).send({message:"Cliente cadastrado com sucesso...", token})
+            res.status(201).send({message:"Клієнт успішно зареєстрований", token})
         } catch (error:any) {
             res.status(400).send(error.message)
         }
@@ -35,7 +35,7 @@ export class UserController{
             } 
              const token = await this.userBusiness.login(userLogin)
             
-            res.status(200).send({message: "Usuario logado com sucesso.", token})
+            res.status(200).send({message: "Користувач успішно ввійшов.", token})
         } catch (error:any) {
             res.status(400).send(error.message)
         }
@@ -67,7 +67,7 @@ export class UserController{
             const idClient = req.params.idClient
 
             await this.userBusiness.removeClient(idClient)
-            res.status(200).send({message:'Sua conta foi removida com sucesso...'});
+            res.status(200).send({message:'Ваш обліковий запис успішно видалено'});
 
         } catch (error:any) {
             res.status(400).send(error.message);
@@ -84,7 +84,7 @@ export class UserController{
                     idClient
                 }
              await this.userBusiness.changePassword(user)
-             res.status(200).send({message:'Sua senha foi alterada com sucesso...'});
+             res.status(200).send({message:'Ваш пароль успішно змінено'});
                 
          } catch (error:any) {
               res.status(400).send(error.message);
@@ -103,7 +103,7 @@ export class UserController{
                 console.log(user);
                 
              await this.userBusiness.changePassword(user)
-             res.status(200).send({message:'Seu limite foi alterado com sucesso...'});
+             res.status(200).send({message:'Ваш ліміт успішно змінено'});
                 
          } catch (error:any) {
               res.status(400).send(error.message);

@@ -3,6 +3,6 @@ import { Button } from './style';
 
 export default function ButtonBack() {
  return (
-   <Button>Voltar</Button>
+   <Button>Назад</Button>
  );
 }

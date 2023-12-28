@@ -14,9 +14,11 @@ const Errors_1 = require("./../customError/Errors");
 const IdGenerator_1 = require("../services/IdGenerator");
 const UserDatabase_1 = require("./../database/UserDatabase");
 const Errors_2 = require("../customError/Errors");
+const Authenticator_1 = require("../services/Authenticator");
 class UserBusiness {
     constructor() {
         this.userDatabase = new UserDatabase_1.UserDatabase();
+        this.authenticator = new Authenticator_1.Authenticator();
         this.signup = (user) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const { nameClient, cpf, password, email } = user;
@@ -42,7 +44,9 @@ class UserBusiness {
                     password,
                     email
                 };
+                const token = this.authenticator.generateToken({ id });
                 yield this.userDatabase.signup(newUser);
+                return token;
             }
             catch (error) {
                 throw new Error(error.message);
@@ -60,15 +64,74 @@ class UserBusiness {
                     throw new Errors_1.UserNotFound;
                 if (verifyCPF[0].password != password)
                     throw new Errors_1.PasswordWrong;
+                const token = this.authenticator.generateToken({ id: verifyCPF[0].id });
+                return token;
             }
             catch (error) {
                 throw new Error(error.message);
             }
         });
-        this.carsByProfile = (cpf) => __awaiter(this, void 0, void 0, function* () {
+        this.getProfile = (authToken) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const result = yield this.userDatabase.carsByProfile(cpf);
+                if (!authToken)
+                    throw new Error('Токен не вставлено');
+                const token = this.authenticator.getTokenData(authToken);
+                if (!token)
+                    throw new Error('Не авторизовано');
+                const result = yield this.userDatabase.getProfile(token);
                 return result;
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
+        this.getUserById = (idClient) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = this.userDatabase.userById(idClient);
+                return result;
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
+        this.removeClient = (idClient) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const verifyClient = yield this.userDatabase.userById(idClient);
+                if (verifyClient.length === 0)
+                    throw new Errors_1.UserNotFound;
+                yield this.userDatabase.removeClient(idClient);
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
+        this.changePassword = (user) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { newPass, idClient } = user;
+                if (!newPass)
+                    throw new Errors_1.BodyNotIncompleted();
+                if (newPass.length < 6)
+                    throw new Error('Пароль має містити 6 цифр');
+                const newPassword = {
+                    newPass,
+                    idClient
+                };
+                yield this.userDatabase.changePassword(newPassword);
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        });
+        this.changeLimit = (user) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { newLimit, idClient } = user;
+                if (!newLimit)
+                    throw new Errors_1.BodyNotIncompleted();
+                const limit = {
+                    newLimit,
+                    idClient
+                };
+                yield this.userDatabase.changePassword(limit);
             }
             catch (error) {
                 throw new Error(error.message);

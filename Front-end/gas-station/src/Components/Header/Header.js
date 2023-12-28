@@ -4,7 +4,7 @@ import { ContainerHeader } from './style';
 export default function Header() {
  return (
    <ContainerHeader>
-      <h3>GS-Gas Station</h3>
+      <h3>EnergoFill</h3>
    </ContainerHeader>
  );
 }

@@ -3,7 +3,7 @@ import { newUser, newUserDatabase } from "../model/Clients"
 import { BaseDatabase } from "./BaseDatabase"
 
 export class UserDatabase extends BaseDatabase{
-    TABLE_NAME = 'GS_Clients'
+    TABLE_NAME = 'client'
     signup = async (user:newUser)=>{
         try {
             const {id, nameClient, cpf,password, email} = user

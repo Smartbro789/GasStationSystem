@@ -16,8 +16,7 @@ export class UserBusiness{
             if(!email.includes('@') || !email.includes('.com')) throw new EmailFormat
             if(cpf.length != 11) throw new CpfFormat
             if(nameClient.length < 3) throw new NameFormat
-            
-            
+
             const verifyEmail = await this.userDatabase.userByEmail(email)
             if(verifyEmail.length != 0) throw new EmailAlreadyRegistered
             
@@ -70,11 +69,11 @@ export class UserBusiness{
         try {
             
             
-            if(!authToken) throw new Error('token nao inserido.')
+            if(!authToken) throw new Error('Токен не вставлено.')
             
             const token = this.authenticator.getTokenData(authToken)
             
-            if(!token) throw new Error('Nao Autorizado')
+            if(!token) throw new Error('Не авторизовано')
             const result = await this.userDatabase.getProfile(token)
             return result
         } catch (error:any) {
@@ -107,7 +106,7 @@ export class UserBusiness{
             const {newPass, idClient} = user
 
             if(!newPass) throw new BodyNotIncompleted()
-            if(newPass.length < 6) throw new Error('A senha precisa conter 6 digitos')
+            if(newPass.length < 6) throw new Error('Пароль має містити 6 цифр')
 
             const newPassword = {
                 newPass,

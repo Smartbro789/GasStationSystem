@@ -18,7 +18,7 @@ export class CarsBusiness{
         try {
 
             const {carName, plate, idClient} = car
-            if(!carName || !plate ) throw new Error("Todos os campos precisam ser inseridos...")
+            if(!carName || !plate ) throw new Error("Необхідно заповнити всі поля")
 
             const idCar = GenerateId.newID()
             

@@ -23,8 +23,8 @@ class ProductsDatabase extends BaseDatabase_1.BaseDatabase {
                     name_product: nameProduct,
                     category
                 };
-                yield ProductsDatabase.connection(this.TABLE_NAME)
-                    .insert(newProduct);
+                // await ProductsDatabase.connection(this.TABLE_NAME)
+                //     .insert(newProduct)
             }
             catch (error) {
                 throw new Error(error.message);
@@ -40,11 +40,11 @@ class ProductsDatabase extends BaseDatabase_1.BaseDatabase {
                 throw new Error(error.message);
             }
         });
-        this.productById = (id) => __awaiter(this, void 0, void 0, function* () {
+        this.productById = (idProduct) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield ProductsDatabase.connection(this.TABLE_NAME)
                     .select()
-                    .where({ id });
+                    .where({ idProduct });
                 return result;
             }
             catch (error) {

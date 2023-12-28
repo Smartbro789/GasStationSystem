@@ -17,7 +17,7 @@ export class ProductsController{
         //  await this.productsBusiness.createProduct(newProduct)
          console.log(newProduct);
          
-         res.status(201).send({message:"Produto adicionado para venda."})
+         res.status(201).send({message:"Товар доданий до продажу."})
         } catch (error:any) {
             res.status(400).send(error.message);
         }
@@ -26,7 +26,7 @@ export class ProductsController{
     getProducts = async (req:Request, res:Response)=>{
         try {
            const result = await this.productsBusiness.getProducts()
-            res.status(200).send({message:"Nossos Produtos", result});
+            res.status(200).send({message:"Наші продукти", result});
         } catch (error:any) {
             res.status(400).send(error.message);
         }

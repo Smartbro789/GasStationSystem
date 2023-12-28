@@ -40,9 +40,9 @@ export default function SignupPage() {
         <ContainerMobile>
             <Header/>
             <ContainerSignup onSubmit={signup}>
-                <h2>Crie sua conta</h2>
+                <h2>Створити свій обліковий запис</h2>
                 <input
-                    placeholder='Nome completo'
+                    placeholder='Повне ім`я'
                     value={nameClient}
                     onChange={(ev)=>{setNameClient(ev.target.value)}}
                 />
@@ -59,12 +59,12 @@ export default function SignupPage() {
                 />
                 <input
                     type='password'
-                    placeholder='Senha'
+                    placeholder='Пароль'
                     value={password}
                     onChange={(ev)=>{setPassword(ev.target.value)}}
                 />
-                <button>Enviar Solicitaçâo</button>
-                <button onClick={()=>{navigate('/login')}} type='button'>Voltar</button>
+                <button>Відправити запит</button>
+                <button onClick={()=>{navigate('/login')}} type='button'>Назад</button>
             </ContainerSignup>
         </ContainerMobile>
     </ContainerBase>
