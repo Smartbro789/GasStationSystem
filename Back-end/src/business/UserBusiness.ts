@@ -107,14 +107,14 @@ export class UserBusiness{
 
     changePassword = async(user:any)=>{
         try {
-            const {newPass, idClient} = user
+            const {newPass, id} = user
 
             if(!newPass) throw new BodyNotIncompleted()
             if(newPass.length < 6) throw new Error('Пароль має містити 6 цифр')
 
             const newPassword = {
                 newPass,
-                idClient
+                id
             }
             await this.userDatabase.changePassword(newPassword)
         } catch (error:any) {

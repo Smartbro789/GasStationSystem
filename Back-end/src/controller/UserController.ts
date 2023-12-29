@@ -88,11 +88,11 @@ export class UserController{
     changePassword = async(req:Request, res:Response)=>{
         try {
             const newPass = req.body.newPass
-            const idClient = req.params.idClient
+            const id = req.params.id
     
              const user:any = {
                     newPass,
-                    idClient
+                    id
                 }
              await this.userBusiness.changePassword(user)
              res.status(200).send({message:'Ваш пароль успішно змінено'});
@@ -105,11 +105,11 @@ export class UserController{
     changeLimit = async(req:Request, res:Response)=>{
         try {
             const newLimit = req.body.newLimit
-            const idClient = req.params.idClient
+            const id = req.params.id
     
              const user:any = {
                     newLimit,
-                    idClient
+                    id
                 }
                 console.log(user);
                 
