@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AccountBusiness } from "../busines/AccountBusiness";
+import { AccountBusiness } from "../business/AccountBusiness";
 
 export class AccountController{
     accountBusiness = new AccountBusiness();

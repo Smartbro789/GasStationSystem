@@ -1,5 +1,5 @@
 import { userLoginDTO } from '../model/User';
-import { UserBusiness } from "../busines/UserBusiness";
+import { UserBusiness } from "../business/UserBusiness";
 import { newUserDTO } from "../model/User";
 import { Request, Response } from 'express';
 import cookie from 'cookie';
