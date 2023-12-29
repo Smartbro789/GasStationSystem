@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../Components/Header/Header';
 import { ContainerBase, ContainerMobile } from '../../styleGlobal';
-import { ContainerSignup } from './style';
+import {ContainerSignup, CustomSelect} from './style';
 
 export default function SignupPage() {
-    const [nameClient, setNameClient] = useState('')
+    const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
     const [position, setPosition] = useState('')
     const [salary, setSalary] = useState('')
@@ -21,7 +21,7 @@ export default function SignupPage() {
         ev.preventDefault()
 
         const body = {
-            nameClient,
+            name,
             dob,
             password,
             email,
@@ -55,14 +55,19 @@ export default function SignupPage() {
                 />
                 <input
                     placeholder='Ім`я'
-                    value={nameClient}
-                    onChange={(ev)=>{setNameClient(ev.target.value)}}
+                    value={name}
+                    onChange={(ev)=>{setName(ev.target.value)}}
                 />
-                <input
-                    placeholder='Посада'
+                <CustomSelect
                     value={position}
                     onChange={(ev)=>{setPosition(ev.target.value)}}
-                />
+                >
+                    <option value="Касир">Касир</option>
+                    <option value="Адміністратор">Адміністратор</option>
+                    <option value="Технічний працівник">Технічний працівник</option>
+                    <option value="Менеджер">Менеджер</option>
+                </CustomSelect>
+
                 <input
                     placeholder='Passport'
                     value={passport}

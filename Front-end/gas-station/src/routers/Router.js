@@ -14,7 +14,7 @@ export const Router = ()=>{
     return(
         <BrowserRouter>
             <Routes>
-                <Route index element={<LoginPage/>} />
+                <Route index element={<HomePage/>} />
                 <Route path ='/login' element={<LoginPage/>} />
                 <Route path='/home' element={<HomePage/>}/>
                 <Route path='/profile' element={<ProfilePage/>}/>

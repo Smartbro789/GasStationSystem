@@ -91,7 +91,8 @@ export default function ProfilePage() {
                     <h2>Мої відомості</h2>
                     <div>
                         <label>Повне ім'я:</label>
-                        <span>{profile.nameClient}</span>
+                        <span>{profile.surname}</span>
+                        <span>{profile.name}</span>
                     </div>
                     <div>
                         <label>Email:</label>
@@ -102,8 +103,8 @@ export default function ProfilePage() {
                         <span>********</span>
                     </div>
                     <div>
-                        <label>Кредитний ліміт:</label>
-                        <span>R$ {Number(profile.credit_limit).toFixed(2)}</span>
+                        <label>Заробітня плата:</label>
+                        <span>₴ {Number(profile.salary).toFixed(2)}</span>
                     </div>
                 </InfoProfile>
                 <ActionsProfile>

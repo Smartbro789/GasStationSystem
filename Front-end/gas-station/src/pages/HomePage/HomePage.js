@@ -30,11 +30,11 @@ export default function HomePage() {
                     <h3>Ласкаво просимо, {client.nameClient}</h3>
                     <div>
                         <label>Загальний ліміт:</label>
-                        <span>R$ {limitTotal.toFixed(2)}</span>
+                        <span>₴ {limitTotal.toFixed(2)}</span>
                     </div>
                     <div>
                         <label>Доступний ліміт:</label>
-                        <span>R$ {(limitTotal-getValues).toFixed(2)}</span>
+                        <span>₴ {(limitTotal-getValues).toFixed(2)}</span>
                     </div>
                 </ContainerInfo>
         )
@@ -49,7 +49,7 @@ export default function HomePage() {
                 <ContainerServices>
                     <CardService>
                         <img alt='Abastecimentos' onClick={()=>{navigate('/abastecimentos')}} src='https://cdn-icons-png.flaticon.com/512/8082/8082687.png'/>
-                        <span>Транспортні засоби</span>
+                        <span>Покупки</span>
                     </CardService>
                     <CardService>
                         <img alt='Veiculos' onClick={()=>{navigate('/meusCarros')}} src='https://cdn-icons-png.flaticon.com/512/6668/6668689.png'/>
@@ -57,7 +57,7 @@ export default function HomePage() {
                     </CardService>
                     <CardService>
                         <img alt='Produtos' onClick={()=>{navigate('/Produtos')}} src='https://cdn-icons-png.flaticon.com/512/481/481233.png'/>
-                        <span>Продукти</span>
+                        <span>Паливо</span>
                         
                     </CardService>
                 </ContainerServices>

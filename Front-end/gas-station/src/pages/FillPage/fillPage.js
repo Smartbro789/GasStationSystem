@@ -33,7 +33,7 @@ export default function FillPage() {
             <Header/>
             <ContainerFill>
                 <header>
-                    <h2>Запаси</h2>
+                    <h2>Покупки</h2>
                 </header>
                 <main>
                    <table border={0}>
@@ -41,7 +41,7 @@ export default function FillPage() {
                             <tr>
                                 <th>Номерний знак</th>
                                 <th>Продукт</th>
-                                <th>Значення</th>
+                                <th>Кількість</th>
                                 <th>Літри</th>
                             </tr>
                             {renderFills}
