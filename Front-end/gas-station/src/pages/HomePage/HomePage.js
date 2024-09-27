@@ -29,12 +29,12 @@ export default function HomePage() {
             <ContainerInfo key={key}>
                     <h3>Ласкаво просимо, {client.nameClient}</h3>
                     <div>
-                        <label>Загальний ліміт:</label>
-                        <span>R$ {limitTotal.toFixed(2)}</span>
+                        <label>Витрачено на паливо:</label>
+                        <span>₴ {limitTotal.toFixed(2)}</span>
                     </div>
                     <div>
-                        <label>Доступний ліміт:</label>
-                        <span>R$ {(limitTotal-getValues).toFixed(2)}</span>
+                        <label>Доступні кошти:</label>
+                        <span>₴ {(limitTotal-getValues).toFixed(2)}</span>
                     </div>
                 </ContainerInfo>
         )
@@ -48,16 +48,16 @@ export default function HomePage() {
                {renderAccount}
                 <ContainerServices>
                     <CardService>
-                        <img alt='Abastecimentos' onClick={()=>{navigate('/abastecimentos')}} src='https://cdn-icons-png.flaticon.com/512/8082/8082687.png'/>
-                        <span>Транспортні засоби</span>
-                    </CardService>
-                    <CardService>
-                        <img alt='Veiculos' onClick={()=>{navigate('/meusCarros')}} src='https://cdn-icons-png.flaticon.com/512/6668/6668689.png'/>
-                        <span>Транспортні засоби</span>
-                    </CardService>
-                    <CardService>
-                        <img alt='Produtos' onClick={()=>{navigate('/Produtos')}} src='https://cdn-icons-png.flaticon.com/512/481/481233.png'/>
+                        <img alt='Abastecimentos' onClick={()=>{navigate('/products')}} src='https://cdn-icons-png.flaticon.com/512/8082/8082687.png'/>
                         <span>Продукти</span>
+                    </CardService>
+                    {/*<CardService>*/}
+                    {/*    <img alt='Veiculos' onClick={()=>{navigate('/meusCarros')}} src='https://cdn-icons-png.flaticon.com/512/6668/6668689.png'/>*/}
+                    {/*    <span>Транспортні засоби</span>*/}
+                    {/*</CardService>*/}
+                    <CardService>
+                        <img alt='Produtos' onClick={()=>{navigate('/fuel')}} src='https://cdn-icons-png.flaticon.com/512/481/481233.png'/>
+                        <span>Паливо</span>
                         
                     </CardService>
                 </ContainerServices>

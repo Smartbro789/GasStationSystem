@@ -1,19 +1,23 @@
 import { AuthenticationData } from "../model/Authenticator"
-import { newUser, newUserDatabase } from "../model/Clients"
+import { newUser, newUserDatabase } from "../model/User"
 import { BaseDatabase } from "./BaseDatabase"
 
 export class UserDatabase extends BaseDatabase{
-    TABLE_NAME = 'client'
+    TABLE_NAME = 'user'
     signup = async (user:newUser)=>{
         try {
-            const {id, nameClient, cpf,password, email} = user
+            const {id, email, password, name,surname ,position, dob, passport, salary} = user
 
             const newUser:newUserDatabase = {
                 id,
-                nameClient,
-                cpf,
+                email,
                 password,
-                email
+                name,
+                surname,
+                position,
+                dob,
+                passport,
+                salary
             }
             await UserDatabase.connection(this.TABLE_NAME)
                 .insert(newUser)
@@ -34,11 +38,11 @@ export class UserDatabase extends BaseDatabase{
         }
     }
 
-    userByCPF = async(cpf:string)=>{
+    userByPassport = async(passport:string)=>{
         try {
             const result = await UserDatabase.connection(this.TABLE_NAME)
                 .select()
-                .where({cpf})
+                .where({passport})
             return result    
         } catch (error:any) {
             throw new Error(error.message);

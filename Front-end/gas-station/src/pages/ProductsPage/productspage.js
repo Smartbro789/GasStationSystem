@@ -23,7 +23,7 @@ export default function ProductsPage() {
 
     const calcValue = (idProduct)=>{
         localStorage.setItem('idProduct', idProduct)
-        navigate('/finalizarCompra')
+        navigate('/finishPurchasePage')
     }
    
  return (
@@ -31,7 +31,7 @@ export default function ProductsPage() {
         <ContainerMobile>
             <Header/>
             <ContainerProduct>
-                <h2>Виберіть свій продукт.</h2>
+                <h2>Паливо</h2>
                 <form>
                     {renderProducts}
                 </form>

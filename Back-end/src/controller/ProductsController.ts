@@ -1,6 +1,6 @@
 import { ProductDTO } from './../model/Products';
 import { Request, Response } from 'express';
-import { ProductsBusiness } from "../busines/ProductsBusiness";
+import { ProductsBusiness } from "../business/ProductsBusiness";
 
 export class ProductsController{
     productsBusiness = new ProductsBusiness()

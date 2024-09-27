@@ -50,7 +50,7 @@ export default function ProfilePage() {
 
             const confirm = window.confirm('Ви справді хочете змінити свій пароль? Цю дію не можна скасувати.')
             if(confirm) {
-                axios.patch(`http://localhost:3003/clients/changePass/${localStorage.getItem('idClient')}`, body)
+                axios.patch(`http://localhost:3003/user/changePass/${localStorage.getItem('id')}`, body)
                 .then((resp)=>{
                     alert(resp.data.message)
                     setNewValue('')
@@ -91,7 +91,8 @@ export default function ProfilePage() {
                     <h2>Мої відомості</h2>
                     <div>
                         <label>Повне ім'я:</label>
-                        <span>{profile.nameClient}</span>
+                        <span>{profile.surname}</span>
+                        <span>{profile.name}</span>
                     </div>
                     <div>
                         <label>Email:</label>
@@ -102,14 +103,14 @@ export default function ProfilePage() {
                         <span>********</span>
                     </div>
                     <div>
-                        <label>Кредитний ліміт:</label>
-                        <span>R$ {Number(profile.credit_limit).toFixed(2)}</span>
+                        <label>Заробітня плата:</label>
+                        <span>₴ {Number(profile.salary).toFixed(2)}</span>
                     </div>
                 </InfoProfile>
                 <ActionsProfile>
                 <section>
                     <button className='change' onClick={changePassword}>Змінити пароль</button>
-                    <button className='limit' onClick={changeLimit}>Збільшити ліміт</button>
+                    <button className='limit' onClick={changeLimit}>Змінити заробітню плату</button>
                     <button className='remove' onClick={removeAccount}>Видалити аккаунт</button>
                 </section>
                 </ActionsProfile>
@@ -123,7 +124,7 @@ export default function ProfilePage() {
                         <button disabled = { newValue.length < 6} onClick={confirmChange}>Підтвердити</button>
                         </fieldset>
                         <fieldset  id='newLimit'>
-                            <legend>Новий ліміт:</legend>
+                            <legend>Нова заробітня плата:</legend>
                             <input
                             value={newValue}
                             onChange={(ev)=>{setNewValue(ev.target.value)}}

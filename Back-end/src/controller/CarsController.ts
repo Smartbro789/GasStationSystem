@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CarsBusiness } from "../busines/CarsBusiness";
+import { CarsBusiness } from "../business/CarsBusiness";
 export class CarsController{
 
     carsBusiness = new CarsBusiness()

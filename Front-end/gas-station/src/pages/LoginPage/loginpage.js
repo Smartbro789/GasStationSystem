@@ -8,14 +8,14 @@ import Header from '../../Components/Header/Header';
 export default function LoginPage() {
 
   const navigate = useNavigate('')
-  const[cpf, setCpf] = useState('')
+  const[passport, setPassport] = useState('')
   const[password, setPassword] = useState('')
 
   const sendLogin = (ev)=>{
     ev.preventDefault()
     
     const body = {
-      cpf,
+      passport,
       password
     }
     
@@ -42,19 +42,19 @@ export default function LoginPage() {
               <h3>Ласкаво просимо до EnergoFill.</h3>
               <h4>Увійти</h4>
               <fieldset>
-                <legend>Введіть свій CPF</legend>
+                <legend>Введіть свій паспорт</legend>
                   <input
                     maxLength={11}
-                    placeholder='cpf'
-                    value={cpf}
-                    onChange={(ev)=>{setCpf(ev.target.value)}}
+                    placeholder='Номер паспорту'
+                    value={passport}
+                    onChange={(ev)=>{setPassport(ev.target.value)}}
                   />
               </fieldset>
               <fieldset>
                 <legend>Введіть свій пароль</legend>
                 <input
                 type='password'
-                  placeholder='senha'
+                  placeholder='Пароль'
                   value={password}
                   onChange={(ev)=>{setPassword(ev.target.value)}}
                 />

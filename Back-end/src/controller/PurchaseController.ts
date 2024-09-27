@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PurchaseBusiness } from '../busines/PurchaseBusiness';
+import { PurchaseBusiness } from '../business/PurchaseBusiness';
 import { PurchaseDTO } from '../model/PurchaseModel';
 
 export class PurchaseController{

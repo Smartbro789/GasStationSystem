@@ -13,10 +13,10 @@ export default function FillPage() {
 
     const infoPurchase = (idPurchase)=>{
         localStorage.setItem('idPurchase', idPurchase)
-        navigate('/infoCompra')
+        navigate('/infoProducts')
     }
 
-    const [data] = useRequestData(`http://localhost:3003/purchases/purchase/${localStorage.getItem('idClient')}`)
+    const [data] = useRequestData(`http://localhost:3003/purchases/purchase/${localStorage.getItem('id')}`)
     const renderFills = data.map((fill, key)=>{
         return(
             <tr onClick={()=>{infoPurchase(fill.idPurchase)}} key={key}>
@@ -33,15 +33,14 @@ export default function FillPage() {
             <Header/>
             <ContainerFill>
                 <header>
-                    <h2>Запаси</h2>
+                    <h2>Продукти</h2>
                 </header>
                 <main>
                    <table border={0}>
                         <tbody>
                             <tr>
-                                <th>Тарілка</th>
                                 <th>Продукт</th>
-                                <th>Значення</th>
+                                <th>Кількість</th>
                                 <th>Літри</th>
                             </tr>
                             {renderFills}
